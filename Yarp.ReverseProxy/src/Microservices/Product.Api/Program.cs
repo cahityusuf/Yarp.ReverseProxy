@@ -21,7 +21,7 @@ var summaries = new[]
     "iPhone 8", "iPhone 11", "iPhone 12", "iPhone 13", "iPhone 14"
 };
 
-app.MapGet("/getallproducts", () =>
+app.MapGet("/getall", () =>
 {
     var forecast = summaries.ToArray();
 

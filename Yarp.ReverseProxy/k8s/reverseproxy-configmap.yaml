@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appsettings-production
+data:
+  appsettings.Production.json: |-
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "AllowedHosts": "*",
+      "ReverseProxy": {
+        "Routes": {
+          "customer": {
+            "clusterId": "customer",
+            "match": {
+              "path": "customer/{**catch-all}"
+            },
+            "transforms": [
+              {
+                "pathPattern": "{**catch-all}"
+              }
+            ]
+          },
+          "product": {
+            "clusterId": "product",
+            "match": {
+              "path": "product/{**catch-all}"
+            },
+            "transforms": [
+              {
+                "pathPattern": "{**catch-all}"
+              }
+            ]
+          }
+        },
+        "Clusters": {
+          "customer": {
+            "destinations": {
+              "customer1": {
+                "address": "http://customerapi-svc:80"
+              }
+            }
+          },
+          "product": {
+            "destinations": {
+              "product1": {
+                "address": "http://productapi-svc:80"
+              }
+            }
+          }
+        }
+      }
+    }

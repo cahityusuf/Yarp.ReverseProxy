@@ -21,11 +21,18 @@ var summaries = new[]
     "Cahit", "Yusuf", "Ahmet", "Mehmet"
 };
 
-app.MapGet("/getallcustomers", () =>
+app.MapGet("/getall", () =>
 {
     var forecast = summaries.ToArray();
 
     return forecast;
+});
+
+app.MapGet("/getbyid", () =>
+{
+    var forecast = summaries.ToArray();
+
+    return forecast[0];
 });
 
 app.Run();

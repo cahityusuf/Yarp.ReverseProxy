@@ -7,11 +7,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{C53D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{4DB21DA0-87DE-4909-8501-9ADE1EEEA609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Yarp", "src\Gateway\Gateway.Yarp\Gateway.Yarp.csproj", "{E30669B4-BDD3-456F-A6F0-32341D4784FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.Yarp", "src\Gateway\Gateway.Yarp\Gateway.Yarp.csproj", "{E30669B4-BDD3-456F-A6F0-32341D4784FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api", "src\Microservices\Customer.Api\Customer.Api.csproj", "{D7D31E2E-EC53-4218-AE2E-37E261D10649}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.Api", "src\Microservices\Customer.Api\Customer.Api.csproj", "{D7D31E2E-EC53-4218-AE2E-37E261D10649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Api", "src\Microservices\Product.Api\Product.Api.csproj", "{103614C5-07E1-4035-A8E8-132E151D070D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Api", "src\Microservices\Product.Api\Product.Api.csproj", "{103614C5-07E1-4035-A8E8-132E151D070D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{1FACF704-9D1B-47DB-9E78-F096EC89D1D7}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\appsettings.Production.json = k8s\appsettings.Production.json
+		k8s\product-deployment.yaml = k8s\product-deployment.yaml
+		k8s\customer-deployment.yaml = k8s\customer-deployment.yaml
+		k8s\customer-service.yaml = k8s\customer-service.yaml
+		k8s\product-service.yaml = k8s\product-service.yaml
+		k8s\reverseproxy-deployment.yaml = k8s\reverseproxy-deployment.yaml
+		k8s\reverseproxy-service.yaml = k8s\reverseproxy-service.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

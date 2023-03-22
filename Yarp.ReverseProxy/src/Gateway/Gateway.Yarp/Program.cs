@@ -4,18 +4,18 @@ using Yarp.ReverseProxy.Transforms;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Koç Üniversitesi",
-        Version = "v1",
-        Description = "Gateway"
-    });
-});
+//builder.Services.AddSwaggerGen(options =>
+//{
+//    options.SwaggerDoc("v1", new OpenApiInfo
+//    {
+//        Title = "Reverse Proxy",
+//        Version = "v1",
+//        Description = "Gateway"
+//    });
+//});
 
 builder.Configuration.AddJsonFile(
-    "appsettings.Development.json");
+    "appsettings.Production.json");
 
 builder.Services.AddControllers();
 
@@ -62,13 +62,13 @@ app.UseCors();
 
 app.MapReverseProxy();
 
-app.UseSwagger()
-    .UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint($"/customer/swagger/v1/swagger.json",
-            "Customer Api");
-        c.SwaggerEndpoint($"/product/swagger/v1/swagger.json",
-            "Product Api");
-    });
+//app.UseSwagger()
+//    .UseSwaggerUI(c =>
+//    {
+//        c.SwaggerEndpoint($"/customer/swagger/v1/swagger.json",
+//            "Customer Api");
+//        c.SwaggerEndpoint($"/product/swagger/v1/swagger.json",
+//            "Product Api");
+//    });
 
 app.Run();

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverseproxy-deployment
+  labels:
+    app: reverseproxy
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      service: reverseproxy
+  template:
+    metadata:
+      labels:
+        app: reverseproxy
+        service: reverseproxy
+    spec:
+      volumes:
+      # You set volumes at the Pod level, then mount them into containers inside that Pod
+      - name: appsettings-volume
+        configMap:
+          name: appsettings-production
+      containers:
+      - name: reverseproxy
+        image: cahityusuf/reverseproxy:v2 #$(Build.BuildId)
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: appsettings-volume
+          mountPath: /app/appsettings.Production.json
+          subPath: appsettings.Production.json
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "0.3"
+          limits:
+            memory: "500Mi"
+            cpu: "0.3"

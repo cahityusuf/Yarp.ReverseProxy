@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productapi-deployment
+  labels:
+    app: productapi
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      service: productapi
+  template:
+    metadata:
+      labels:
+        app: productapi
+        service: productapi
+    spec:
+      containers:
+      - name: productapi
+        image: cahityusuf/productapi:v2 #$(Build.BuildId)
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "0.3"
+          limits:
+            memory: "500Mi"
+            cpu: "0.3"
