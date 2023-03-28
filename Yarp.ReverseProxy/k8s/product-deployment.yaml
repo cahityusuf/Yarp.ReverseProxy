@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productapi-deployment
+  namespace: proxy
   labels:
     app: productapi
 spec:
@@ -22,7 +23,7 @@ spec:
     spec:
       containers:
       - name: productapi
-        image: cahityusuf/productapi:v2 #$(Build.BuildId)
+        image: cahityusuf/productapi:v3 #$(Build.BuildId)
         imagePullPolicy: Always
         ports:
         - containerPort: 80

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reverseproxy-deployment
+  namespace: proxy
   labels:
     app: reverseproxy
 spec:
@@ -21,13 +22,12 @@ spec:
         service: reverseproxy
     spec:
       volumes:
-      # You set volumes at the Pod level, then mount them into containers inside that Pod
       - name: appsettings-volume
         configMap:
           name: appsettings-production
       containers:
       - name: reverseproxy
-        image: cahityusuf/reverseproxy:v2 #$(Build.BuildId)
+        image: cahityusuf/reverseproxy:v3
         imagePullPolicy: Always
         ports:
         - containerPort: 80

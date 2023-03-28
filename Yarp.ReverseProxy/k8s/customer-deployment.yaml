@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: customerapi-deployment
+  namespace: proxy
   labels:
     app: customerapi
 spec:
@@ -22,7 +23,7 @@ spec:
     spec:
       containers:
         - name: customerapi
-          image: cahityusuf/customerapi:v1 #$(Build.BuildId)
+          image: cahityusuf/customerapi:v2 #$(Build.BuildId)
           imagePullPolicy: Always
           ports:
             - containerPort: 80
